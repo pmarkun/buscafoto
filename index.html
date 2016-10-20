@@ -11,20 +11,23 @@
 if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
   var commands = {
-    'zebra': function() {
+    'mostra *tag': function(tag) {
     
-    url = 'http://theslideshow.net/#simple/' + 'zebra'
+    url = 'https://www.google.com.br/search?source=lnms&tbm=isch&q=' + tag
     console.log(url);
+    $("#mostra").attr("src", url);
     // hackishly force iframe to reload
-	var iframe = document.getElementById("mostra");
-	iframe.src = '/black.html'
-	iframe.src = url;
-    }
+	//$("#mostra").attr("src", "/black.html");
+    //$("#mostra").on("load", function () {
+    //    $("#mostra").attr("src", url);
+    //});    
+	}
+    
   };
 
   // Add our commands to annyang
+  annyang.setLanguage('pt-BR');
   annyang.addCommands(commands);
-
   // Start listening. You can call this here, or attach this call to an event, button, etc.
   annyang.start();
 }
