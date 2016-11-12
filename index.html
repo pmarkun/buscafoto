@@ -10,9 +10,7 @@
   }
   #wall img {
     float:right;
-    width:150%;
-    height:150%;
-  }
+    }
 </style>
 </head>
 <body>
@@ -23,14 +21,21 @@
 <script>
 if (annyang) {
   // Let's define our first command. First the text we expect, and then the function it should call
+  cade = function(tag) {
+    $("#wall").html("")
+    $("#wall").append("<img src='/fotos/"+tag.toLowerCase()+'.jpg" />')
+  }
+
+
   mostra = function(tag) {
     
     //url = 'https://www.google.com.br/search?source=lnms&tbm=isch&q=' + tag
     //console.log(url);
     url = "http://labhacker.org.br:5000/"+tag
     $.getJSON(url, function (data) {
+        $("#wall").html("");
         $.each(data.items, function(index,item) {
-          $("#wall").append("<img src='"+item.image.thumbnailLink+"' />")
+          $("#wall").append("<img src='"+item.image.thumbnailLink+"' />");
         });
     } )
     //$("#mostra").attr("src", url);
@@ -45,7 +50,8 @@ if (annyang) {
   var commands = {
     'mostra *tag': mostra,
     'mostre *tag': mostra,
-    'bota *tag': mostra 
+    'bota *tag': mostra,
+    'cade *tag' : cade 
     
   };
 
